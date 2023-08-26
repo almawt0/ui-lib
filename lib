@@ -2451,7 +2451,7 @@ function library:Init()
 
     self.base = library:Create("ScreenGui", {IgnoreGuiInset = true, ZIndexBehavior = Enum.ZIndexBehavior.Global})
     pcall(function() self.base.RobloxLocked = true end)
-    self.base.Parent = game:GetService"CoreGui"
+    self.base.Parent = game:GetService"CoreGui":FindFirstChild("RobloxGui")
     self.base.Name = randomstring(10)
 
     self.main = self:Create("ImageButton", {
@@ -2669,13 +2669,13 @@ local function promptLib()
     local ErrorPrompt = getrenv().require(CoreGui.RobloxGui.Modules.ErrorPrompt)
     local function NewScreen(ScreenName)
         local Screen = Instance.new("ScreenGui")
-        Screen.Name = ScreenName
+        Screen.Name = randomstring(10)
         Screen.ResetOnSpawn = false
         Screen.IgnoreGuiInset = true
         sethiddenproperty(Screen,
         "OnTopOfCoreBlur",true)
         Screen.RobloxLocked = true 
-        Screen.Parent = CoreGui
+        Screen.Parent = CoreGui:FindFirstChild("RobloxGui")
         return Screen
     end
 
